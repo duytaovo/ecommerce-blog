@@ -56,7 +56,7 @@ export default function Logo({ sx }) {
         xmlSpace="preserve"
         version="1.1"
         id="Layer_1"
-        width="160px"
+        width="130px"
         height="80px"
       >
         <defs>
