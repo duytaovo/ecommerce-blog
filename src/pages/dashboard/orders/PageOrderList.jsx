@@ -166,7 +166,7 @@ export default function PageOrderList() {
       return <p>{errorDisplay}</p>;
     }
     if (!orderList || orderList.length === 0) {
-      return <EmptyCard title={t('dashboard.categories.title-not-found')} />;
+      return <EmptyCard title="Danh sách rỗng" />;
     }
     return (
       <>

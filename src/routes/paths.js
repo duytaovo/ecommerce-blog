@@ -30,6 +30,7 @@ export const PATH_DASHBOARD = {
     categories: path(ROOTS_DASHBOARD, '/app/categories'),
     brands: path(ROOTS_DASHBOARD, '/app/brands'),
     discounts: path(ROOTS_DASHBOARD, '/app/discounts'),
+    comment: path(ROOTS_DASHBOARD, '/app/comment-blog'),
     products: {
       root: path(ROOTS_DASHBOARD, '/app/products'),
       list: path(ROOTS_DASHBOARD, '/app/products/list'),

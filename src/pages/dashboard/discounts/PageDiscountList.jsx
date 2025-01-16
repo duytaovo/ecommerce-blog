@@ -342,7 +342,7 @@ export default function PageDiscountList() {
             </Box>
           </Card>
         ) : (
-          <EmptyCard title={t('dashboard.discounts.title-not-found')} />
+          <EmptyCard title="Danh sách rỗng" />
         )}
       </Container>
     </Page>

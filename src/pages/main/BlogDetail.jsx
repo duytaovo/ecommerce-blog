@@ -1,4 +1,11 @@
-import { CircularProgress, Button, Box, Typography, Card, CardMedia } from '@mui/material';
+import {
+  CircularProgress,
+  Button,
+  Box,
+  Typography,
+  Card,
+  CardMedia,
+} from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import PostCard from 'src/components/blog/PostCard';
@@ -9,7 +16,8 @@ import { useDispatch, useSelector } from 'react-redux';
 export default function BlogPageDetail() {
   const { postId } = useParams();
   const [recentPosts, setRecentPosts] = useState(null);
-  const { item: currentBlog,loading } = useSelector((state) => state.blogs);
+  const { item: currentBlog, loading } = useSelector((state) => state.blogs);
+  const { list: postList } = useSelector((state) => state.blogs);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,25 +26,29 @@ export default function BlogPageDetail() {
 
   if (loading)
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '100vh',
+        }}
+      >
         <CircularProgress size={60} />
       </Box>
     );
 
   return (
     <Box sx={{ p: 3, maxWidth: '1200px', mx: 'auto', minHeight: '100vh' }}>
-      <Typography
-        variant="h3"
-        sx={{ mt: 5, textAlign: 'center', fontFamily: 'serif' }}
-      >
+      <Typography variant="h3" sx={{ mt: 5, textAlign: 'center' }}>
         {currentBlog && currentBlog.title}
       </Typography>
       <Link
         to={`/search?category=${currentBlog && currentBlog.category}`}
         style={{ textDecoration: 'none', alignSelf: 'center' }}
       >
-        <Button variant="outlined" size="small" sx={{ mt: 2 }}>
-          {currentBlog && currentBlog.category}
+        <Button disabled variant="outlined" size="small" sx={{ mt: 2 }}>
+          {currentBlog && currentBlog?.category.name}
         </Button>
       </Link>
       <Card sx={{ mt: 5 }}>
@@ -60,8 +72,8 @@ export default function BlogPageDetail() {
           {currentBlog && new Date(currentBlog.createdAt).toLocaleDateString()}
         </Typography>
         <Typography variant="body2" sx={{ fontStyle: 'italic' }}>
-          {currentBlog && (currentBlog.content.length / 1000).toFixed(0)} mins
-          read
+          {currentBlog && (currentBlog.content.length / 1000).toFixed(0)} phút
+          đọc
         </Typography>
       </Box>
       <Box
@@ -73,7 +85,7 @@ export default function BlogPageDetail() {
       </Box> */}
       <CommentSection postId={postId} />
       <Box sx={{ textAlign: 'center', mt: 5 }}>
-        <Typography variant="h5">Recent Articles</Typography>
+        <Typography variant="h5">Bài gần đây</Typography>
         <Box
           sx={{
             display: 'flex',
@@ -83,8 +95,11 @@ export default function BlogPageDetail() {
             mt: 3,
           }}
         >
-          {recentPosts &&
-            recentPosts.map((post) => <PostCard key={postId} post={post} />)}
+          {postList.length > 6
+            ? postList
+                .slice(0, 6)
+                .map((post) => <PostCard key={post._id} post={post} />)
+            : postList?.map((post) => <PostCard key={post._id} post={post} />)}
         </Box>
       </Box>
     </Box>

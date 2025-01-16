@@ -51,7 +51,8 @@ const ICONS = {
   products: getIcon('ic_products'),
   list: getIcon('ic_list'),
   addNew: getIcon('ic_add-new'),
-  blogs: getIcon('ic_add-new')
+  blogs: getIcon('ic_add-new'),
+  comment: getIcon('ic_list'),
 };
 
 // ----------------------------------------------------------------------
@@ -128,6 +129,11 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
           title: t('dashboard.discounts.title'),
           path: PATH_DASHBOARD.app.discounts,
           icon: ICONS.discounts,
+        },
+        {
+          title: t('dashboard.comment-blog'),
+          path: PATH_DASHBOARD.app.comment,
+          icon: ICONS.comment,
         },
         {
           title: t('products.title'),

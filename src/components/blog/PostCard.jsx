@@ -64,7 +64,7 @@ export default function PostCard({ post }) {
           {post.title}
         </Typography>
         <Typography variant="body2" fontStyle="italic" color="text.secondary">
-          {post.category}
+          {post.category.name}
         </Typography>
         <Button
           component={Link}

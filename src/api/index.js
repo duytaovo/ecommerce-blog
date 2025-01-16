@@ -185,6 +185,9 @@ export const addComment = (commentBody) =>
 export const getComments = (postId) => 
   API.get(`/comment-blog/getPostComments/${postId}`);
 
+export const getCommentsAll = () =>
+  API.get(`/comment-blog`);
+
 export const likeComment = (commentId) => 
   API.put(`/comment-blog/likeComment/${commentId}`);
 

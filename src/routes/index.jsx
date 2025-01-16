@@ -10,11 +10,6 @@ import AuthGuard from '../guards/AuthGuard';
 // import RoleBasedGuard from '../guards/RoleBasedGuard';
 // components
 import LoadingScreen from '../components/LoadingScreen';
-import PagePostsList from 'src/pages/dashboard/blogs/DashPosts';
-import PagePost from 'src/pages/dashboard/blogs/PagePost';
-import PageBlogEdit from 'src/pages/dashboard/blogs/PageBlogEdit';
-import BlogsPage from 'src/pages/main/Blogs';
-import BlogPageDetail from 'src/pages/main/BlogDetail';
 
 // ----------------------------------------------------------------------
 
@@ -104,6 +99,7 @@ export default function Router() {
             },
             { path: 'brands', element: <PageBrandList /> },
             { path: 'discounts', element: <PageDiscountList /> },
+            { path: 'comment-blog', element: <PageCommentList /> },
             {
               path: 'products',
               children: [
@@ -203,3 +199,23 @@ const ProductRelatedPage = Loadable(lazy(() => import('../pages/main/ProductRela
 const CartPage = Loadable(lazy(() => import('../pages/main/CartPage')));
 const ViewOrderPage = Loadable(lazy(() => import('../pages/main/ViewOrderPage')));
 const OrderHistoryPage = Loadable(lazy(() => import('../pages/main/OrderHistoryPage')));
+
+
+//Blog
+const PagePostsList = Loadable(
+  lazy(() => import('src/pages/dashboard/blogs/DashPosts'))
+);
+const PagePost = Loadable(
+  lazy(() => import('src/pages/dashboard/blogs/PagePost'))
+);
+const PageBlogEdit = Loadable(
+  lazy(() => import('src/pages/dashboard/blogs/PageBlogEdit'))
+);
+const BlogsPage = Loadable(lazy(() => import('src/pages/main/Blogs')));
+const BlogPageDetail = Loadable(
+  lazy(() => import('src/pages/main/BlogDetail'))
+);
+const PageCommentList = Loadable(
+  lazy(() => import('src/pages/dashboard/comment/CommentList'))
+);
+

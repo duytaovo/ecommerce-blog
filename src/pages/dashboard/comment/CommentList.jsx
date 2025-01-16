@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useTheme } from '@material-ui/core/styles';
 import { useSnackbar } from 'notistack';
 import { useLocales } from 'src/hooks';
 import { deletePost, getListPost } from 'src/redux/slices/blogSlice';
@@ -32,20 +31,18 @@ import { fDateTime } from 'src/utils/formatTime';
 import { MCircularProgress } from 'src/components/@material-extend';
 import { BlogMoreMenu } from 'src/components/dashboard/blogs';
 import { getAccountInfo } from 'src/redux/slices/accountSlice';
+import { getCommentsAll } from 'src/api';
 
-export default function PagePostsList() {
+export default function PageCommentList() {
   const { t, currentLang } = useLocales();
   const { enqueueSnackbar } = useSnackbar();
   const { info: accountInfo } = useSelector((state) => state.account);
-  const {
-    list: postList,
-    totalPosts,
-    isLoading,
-  } = useSelector((state) => state.blogs);
   const [page, setPage] = useState(1);
+  const [comments, setComments] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selected, setSelected] = useState([]);
   const [isCompact, setIsCompact] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -53,8 +50,18 @@ export default function PagePostsList() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (accountInfo) dispatch(getListPost(accountInfo._id));
-  }, [accountInfo, dispatch]);
+    const fetchComments = async () => {
+      try {
+        setIsLoading(true)
+        const { data } = await getCommentsAll();
+        setComments(data?.comments);
+        setIsLoading(false)
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchComments();
+  }, []);
 
   const tableHeads = [
     {
@@ -64,20 +71,20 @@ export default function PagePostsList() {
       label: 'Ngày cập nhật',
     },
     {
-      id: 'image',
+      id: 'content',
       numeric: false,
       disablePadding: false,
-      label: 'Ảnh',
+      label: 'Nội dụng bình luận',
     },
     {
-      id: 'title',
+      id: 'likeNumber',
       disablePadding: true,
-      label: 'Tiêu đề',
+      label: 'Số lượt thích',
     },
     {
-      id: 'category',
+      id: 'user',
       disablePadding: true,
-      label: 'Danh mục',
+      label: 'Người bình luận',
     },
     {
       id: 'action',
@@ -88,10 +95,10 @@ export default function PagePostsList() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = postList.map((n) => n._id);
+      const newSelected = comments.map((n) => n._id);
       setSelected(newSelected);
       if (selected.count === 1) {
-        setCurrentId(postList[postList.indexOf(selected[0])]._id);
+        setCurrentId(comments[comments.indexOf(selected[0])]._id);
       }
       return;
     }
@@ -115,15 +122,6 @@ export default function PagePostsList() {
       );
     }
     setSelected(newSelected);
-  };
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage + 1);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(1);
   };
 
   const isSelected = (_id) => selected.indexOf(_id) !== -1;
@@ -150,13 +148,12 @@ export default function PagePostsList() {
       );
     }
 
-    if (postList?.length > 0) {
+    if (comments?.length > 0) {
       return (
         <TableBody>
-          {postList?.map((row, index) => {
+          {comments?.map((row, index) => {
             if (!row) return;
-            const { _id, title, category, updatedAt } = row;
-            const thumbnail = row?.image;
+            const { _id, content, numberOfLikes, updatedAt, userId } = row;
             const isItemSelected = isSelected(_id);
             const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -178,30 +175,14 @@ export default function PagePostsList() {
                 </TableCell>
                 <TableCell
                   component="th"
-                  scope="row"
-                  padding="none"
-                  style={{ width: 175, paddingLeft: 0 }}
-                  align="left"
-                >
-                  <Box sx={{ py: 2, display: 'flex', alignItems: 'center' }}>
-                    <ThumbImgStyle
-                      alt={title}
-                      src={thumbnail}
-                      objectFit="contain"
-                      isSelected={isItemSelected}
-                    />
-                  </Box>
-                </TableCell>
-                <TableCell
-                  component="th"
                   id={labelId}
                   scope="row"
                   style={{
-                    paddingLeft: 0,
+                    // paddingLeft: 0,
                   }}
                   // padding="normal"
                 >
-                  {title}
+                  {content}
                 </TableCell>
                 <TableCell
                   component="th"
@@ -209,17 +190,20 @@ export default function PagePostsList() {
                   scope="row"
                   // padding="normal"
                 >
-                  {category?.name}
+                  {numberOfLikes}
+                </TableCell>
+                <TableCell
+                  component="th"
+                  id={labelId}
+                  scope="row"
+                  // padding="normal"
+                >
+                  {userId?.username}
                 </TableCell>
                 <TableCell
                   align="right"
                   onClick={(event) => event.stopPropagation()}
                 >
-                  <BlogMoreMenu
-                    onDelete={() => handleDeletePost(_id)}
-                    blogId={_id}
-                    blogName={title}
-                  />
                 </TableCell>
               </TableRow>
             );
@@ -231,7 +215,7 @@ export default function PagePostsList() {
       <TableBody>
         <TableRow>
           <TableCell colSpan={tableHeads.length + 1}>
-            <EmptyCard title={'Không tìm thấy bài đăng'} />
+            <EmptyCard title={'Không tìm thấy bình luận nào'} />
           </TableCell>
         </TableRow>
       </TableBody>
@@ -242,35 +226,25 @@ export default function PagePostsList() {
     try {
       await dispatch(deletePost(_id, accountInfo._id));
       await dispatch(getListPost(accountInfo._id));
-      enqueueSnackbar(t('blogs.delete'), { variant: 'success' });
+      enqueueSnackbar(t('commentBlog.delete'), { variant: 'success' });
     } catch (e) {
-      enqueueSnackbar(t('blogs.error'), { variant: 'error' });
+      enqueueSnackbar(t('commentBlog.error'), { variant: 'error' });
     }
   };
 
   return (
-    <Page title={t('blogs.page-title')}>
+    <Page title={t('commentBlog.page-title')}>
       <Container maxWidth={false}>
         <HeaderBreadcrumbs
-          heading={t('blogs.heading')}
+          heading={t('commentBlog.heading')}
           links={[
             { name: t('dashboard.title'), href: PATH_DASHBOARD.root },
             {
               name: t('dashboard.management'),
               href: PATH_DASHBOARD.app.root,
             },
-            { name: t('blogs.heading') },
+            { name: t('commentBlog.heading') },
           ]}
-          action={
-            <Button
-              variant="contained"
-              component={RouterLink}
-              to={PATH_DASHBOARD.app.blogs.add}
-              startIcon={<Icon icon={plusFill} />}
-            >
-              {t('blogs.add')}
-            </Button>
-          }
         />
         <Card>
           <Scrollbar>
@@ -279,7 +253,7 @@ export default function PagePostsList() {
                 <MTableHead
                   headLabel={tableHeads}
                   numSelected={selected.length}
-                  rowCount={postList.length}
+                  rowCount={comments.length}
                   onSelectAllClick={handleSelectAllClick}
                 />
                 {renderTableBody()}
@@ -287,18 +261,18 @@ export default function PagePostsList() {
             </TableContainer>
           </Scrollbar>
 
-          <Box sx={{ position: 'relative' }}>
+          {/* <Box sx={{ position: 'relative' }}>
             <TablePagination
               labelRowsPerPage={t('common.rows-per-page')}
               rowsPerPageOptions={[5, 10, 25, 50, 100]}
               component="div"
-              count={totalPosts}
+              count={comments.length}
               rowsPerPage={rowsPerPage}
               page={page - 1}
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
             />
-          </Box>
+          </Box> */}
         </Card>
       </Container>
     </Page>

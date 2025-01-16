@@ -10,7 +10,6 @@ export default function BlogsPage() {
   const dispatch = useDispatch();
   const {
     list: postList,
-    isLoading,
   } = useSelector((state) => state.blogs);
 
  useEffect(() => {
@@ -24,15 +23,14 @@ export default function BlogsPage() {
         <Typography variant="h3" fontWeight="bold" gutterBottom>
           Chào mừng đến với Blog của tôi
         </Typography>
-        {/* <Typography
+        <Typography
           variant="body1"
           color="text.secondary"
           sx={{ mb: 2, maxWidth: '600px', mx: 'auto' }}
         >
-          Here you'll find a variety of articles and tutorials on topics such as
-          web development, software engineering, and programming languages.
+          Đây là nơi đăng các tin tức về sản phẩm của chúng tôi!
         </Typography>
-        <Button
+        {/* <Button
           component={Link}
           to="/search"
           variant="contained"
@@ -50,7 +48,6 @@ export default function BlogsPage() {
 
       {/* Recent Posts Section */}
       <Container maxWidth="lg" sx={{ pb: 6 }}>
-        {isLoading && <Spinner/>}
         {postList && postList.length > 0 && (
           <Box>
             <Typography
@@ -59,7 +56,7 @@ export default function BlogsPage() {
               textAlign="center"
               gutterBottom
             >
-              Bài đăng gần đây
+              Danh sách bài đăng
             </Typography>
             <Grid container spacing={4} sx={{ mt: 2 }}>
               {postList.map((post) => (
@@ -68,7 +65,7 @@ export default function BlogsPage() {
                 </Grid>
               ))}
             </Grid>
-            <Box sx={{ textAlign: 'center', mt: 4 }}>
+            {/* <Box sx={{ textAlign: 'center', mt: 4 }}>
               <Button
                 component={Link}
                 to="/search"
@@ -77,7 +74,7 @@ export default function BlogsPage() {
               >
                 Xem tất cả
               </Button>
-            </Box>
+            </Box> */}
           </Box>
         )}
       </Container>

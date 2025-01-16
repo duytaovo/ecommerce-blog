@@ -147,7 +147,14 @@ export default function PageProductEdit() {
   return (
     <FormikProvider value={formik}>
       <Form noValidate autoComplete="off">
-        <Stack direction="row" spacing={3} sx={{ justifyContent: 'space-between', marginBottom: theme.spacing(2) }}>
+        <Stack
+          direction="row"
+          spacing={3}
+          sx={{
+            justifyContent: 'space-between',
+            marginBottom: theme.spacing(2),
+          }}
+        >
           <Typography variant="h4" gutterBottom>
             {t('products.general-info')}
           </Typography>
@@ -167,8 +174,7 @@ export default function PageProductEdit() {
                   <div>
                     <LabelStyle>{t('products.desc')}</LabelStyle>
                     <QuillEditor
-                      simple
-                      id="product-description"
+                      id="toolbar"
                       value={values.description}
                       onChange={(val) => setFieldValue('description', val)}
                       error={Boolean(touched.description && errors.description)}
@@ -179,7 +185,11 @@ export default function PageProductEdit() {
                       </FormHelperText>
                     )}
                   </div>
-                  <TextField fullWidth label={t('products.video')} {...getFieldProps('video')} />
+                  <TextField
+                    fullWidth
+                    label={t('products.video')}
+                    {...getFieldProps('video')}
+                  />
                 </Stack>
               </Card>
             </Stack>
@@ -214,9 +224,13 @@ export default function PageProductEdit() {
                       required
                       fullWidth
                       defaultValue={currentProduct.brand}
-                      options={brandsList.filter((x) => !x.isHide && x._id !== currentProduct?.brand)}
+                      options={brandsList.filter(
+                        (x) => !x.isHide && x._id !== currentProduct?.brand
+                      )}
                       getOptionLabel={(option) => option.name}
-                      value={brandsList.find((c) => c.slug === currentProduct?.brand)}
+                      value={brandsList.find(
+                        (c) => c.slug === currentProduct?.brand
+                      )}
                       onChange={(e, newValue) => {
                         setFieldValue('brand', newValue?._id);
                         setValidationBrand(false);
@@ -232,16 +246,24 @@ export default function PageProductEdit() {
                       error={Boolean(true)}
                     />
                   )}
-                  <Link to={PATH_DASHBOARD.app.brands} color="inherit" component={RouterLink}>
+                  <Link
+                    to={PATH_DASHBOARD.app.brands}
+                    color="inherit"
+                    component={RouterLink}
+                  >
                     <Typography
                       variant="inherit"
                       sx={{
                         marginTop: theme.spacing(-2),
                         marginLeft: theme.spacing(1),
-                        fontSize: 'small'
+                        fontSize: 'small',
                       }}
                     >
-                      <Typography component="a" variant="subtitle4" sx={{ color: 'primary.main' }}>
+                      <Typography
+                        component="a"
+                        variant="subtitle4"
+                        sx={{ color: 'primary.main' }}
+                      >
                         &nbsp;{t('products.brand-add')}
                       </Typography>
                     </Typography>
@@ -251,9 +273,13 @@ export default function PageProductEdit() {
                     <Autocomplete
                       fullWidth
                       defaultValue={currentProduct.category}
-                      options={categoriesList.filter((x) => !x.isHide && x._id !== currentProduct?.category)}
+                      options={categoriesList.filter(
+                        (x) => !x.isHide && x._id !== currentProduct?.category
+                      )}
                       getOptionLabel={(option) => option.name}
-                      value={categoriesList.find((c) => c.slug === currentProduct?.category)}
+                      value={categoriesList.find(
+                        (c) => c.slug === currentProduct?.category
+                      )}
                       onChange={(e, newValue) => {
                         setFieldValue('category', newValue?._id);
                         setValidationCategory(false);
@@ -268,16 +294,24 @@ export default function PageProductEdit() {
                       )}
                     />
                   )}
-                  <Link to={PATH_DASHBOARD.app.categories} color="inherit" component={RouterLink}>
+                  <Link
+                    to={PATH_DASHBOARD.app.categories}
+                    color="inherit"
+                    component={RouterLink}
+                  >
                     <Typography
                       variant="inherit"
                       sx={{
                         marginTop: theme.spacing(-2),
                         marginLeft: theme.spacing(1),
-                        fontSize: 'small'
+                        fontSize: 'small',
                       }}
                     >
-                      <Typography component="a" variant="subtitle4" sx={{ color: 'primary.main' }}>
+                      <Typography
+                        component="a"
+                        variant="subtitle4"
+                        sx={{ color: 'primary.main' }}
+                      >
                         &nbsp;{t('products.category-add')}
                       </Typography>
                     </Typography>
@@ -292,14 +326,26 @@ export default function PageProductEdit() {
                     options={TAGS_OPTION.map((option) => option)}
                     renderTags={(value, getTagProps) =>
                       value.map((option, index) => (
-                        <Chip key={option} size="small" label={option} {...getTagProps({ index })} />
+                        <Chip
+                          key={option}
+                          size="small"
+                          label={option}
+                          {...getTagProps({ index })}
+                        />
                       ))
                     }
-                    renderInput={(params) => <TextField label="Tags" {...params} />}
+                    renderInput={(params) => (
+                      <TextField label="Tags" {...params} />
+                    )}
                   />
                 </Stack>
               </Card>
-              <Button fullWidth variant="contained" size="large" onClick={handleSubmit}>
+              <Button
+                fullWidth
+                variant="contained"
+                size="large"
+                onClick={handleSubmit}
+              >
                 {t('products.save')}
               </Button>
             </Stack>

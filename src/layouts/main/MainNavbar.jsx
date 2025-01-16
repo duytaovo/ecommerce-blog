@@ -4,6 +4,7 @@ import { NavLink as RouterLink } from 'react-router-dom';
 // icon
 import { Icon } from '@iconify/react';
 import cart24Regular from '@iconify/icons-fluent/cart-24-regular';
+import blog24Regular from '@iconify/icons-fluent/document-ribbon-24-regular';
 import history24Filled from '@iconify/icons-fluent/history-24-filled';
 import baselineLocationOn from '@iconify/icons-ic/baseline-location-on';
 import roundVpnKey from '@iconify/icons-ic/round-vpn-key';
@@ -161,9 +162,12 @@ function MainNavbar({ categoryList, showCategoryMenu, cartItemsCount }) {
         sx={(theme) => ({
           [theme.breakpoints.up('md')]: {
             height: APP_BAR_DESKTOP - (showCategoryMenu ? 0 : 44),
-            paddingBottom: 0
+            paddingBottom: 0,
           },
-          ...(isOffset && { bgcolor: 'background.default', height: { md: APP_BAR_DESKTOP - 16 } })
+          ...(isOffset && {
+            bgcolor: 'background.default',
+            height: { md: APP_BAR_DESKTOP - 16 },
+          }),
         })}
       >
         <ContainerStyle maxWidth="lg" style={{ height: 64 }}>
@@ -180,20 +184,39 @@ function MainNavbar({ categoryList, showCategoryMenu, cartItemsCount }) {
             <SearchBar />
           </Box>
 
-          <Stack direction="row" spacing={{ xs: 0.5, sm: 5 }} sx={{ alignItems: 'center' }}>
+          <Stack
+            direction="row"
+            spacing={{ xs: 0.5, sm: 5 }}
+            sx={{ alignItems: 'center' }}
+          >
             <MHidden width="mdUp">
-              <MenuMobile isOffset={isOffset} isHome={false} navConfig={categoryList} />
+              <MenuMobile
+                isOffset={isOffset}
+                isHome={false}
+                navConfig={categoryList}
+              />
             </MHidden>
 
             <LanguagePopover isShowTitle />
 
-            <NavbarItem text={t('home.order-history')} icon={history24Filled} color="inherit" href="/order-history" />
+            <NavbarItem
+              text={t('home.order-history')}
+              icon={history24Filled}
+              color="inherit"
+              href="/order-history"
+            />
             <NavbarItem
               badgeContent={cartItemsCount}
               text={t('home.cart')}
               icon={cart24Regular}
               color="primary"
               href="/cart"
+            />
+            <NavbarItem
+              text={t('home.blog')}
+              icon={blog24Regular}
+              color="primary"
+              href="/blog"
             />
 
             <AccountPopover menuOptions={accountMenus} isShowTitle />
@@ -204,7 +227,11 @@ function MainNavbar({ categoryList, showCategoryMenu, cartItemsCount }) {
           <MHidden width="mdDown">
             <ColorBar>
               <ContainerStyle maxWidth="lg">
-                <MenuDesktop isOffset={isOffset} isHome={false} navConfig={categoryList} />
+                <MenuDesktop
+                  isOffset={isOffset}
+                  isHome={false}
+                  navConfig={categoryList}
+                />
               </ContainerStyle>
             </ColorBar>
           </MHidden>

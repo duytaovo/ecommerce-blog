@@ -384,13 +384,16 @@ export default function ProductForm() {
                     helperText={touched.name && errors.name}
                   />
 
-                  <TextField fullWidth label="Loại sản phẩm" {...getFieldProps('variantName')} />
+                  <TextField
+                    fullWidth
+                    label="Loại sản phẩm"
+                    {...getFieldProps('variantName')}
+                  />
 
                   <div>
                     <LabelStyle>{t('products.desc')}</LabelStyle>
                     <QuillEditor
-                      simple
-                      id="product-description"
+                      id="toolbar"
                       value={values.description}
                       onChange={(val) => setFieldValue('description', val)}
                       error={Boolean(touched.description && errors.description)}
@@ -433,7 +436,11 @@ export default function ProductForm() {
                   <div>
                     <LabelStyle>
                       {t('products.pictures')}
-                      <Typography component="span" variant="subtitle4" sx={{ color: 'primary.main' }}>
+                      <Typography
+                        component="span"
+                        variant="subtitle4"
+                        sx={{ color: 'primary.main' }}
+                      >
                         &nbsp;{t('products.pictures-note')}
                       </Typography>
                     </LabelStyle>
@@ -448,7 +455,11 @@ export default function ProductForm() {
                       uploadAll={handleUploadMultiple}
                     />
                   </div>
-                  <TextField fullWidth label={t('products.video')} {...getFieldProps('video')} />
+                  <TextField
+                    fullWidth
+                    label={t('products.video')}
+                    {...getFieldProps('video')}
+                  />
                 </Stack>
               </Card>
             </Stack>
@@ -498,7 +509,9 @@ export default function ProductForm() {
                   <Autocomplete
                     required
                     fullWidth
-                    options={brandsList.filter((x) => !x.isHide && x._id !== values.brand)}
+                    options={brandsList.filter(
+                      (x) => !x.isHide && x._id !== values.brand
+                    )}
                     getOptionLabel={(option) => option.name}
                     value={brandsList.find((c) => c.slug === values.brand)}
                     onChange={(e, newValue) => {
@@ -515,17 +528,25 @@ export default function ProductForm() {
                     )}
                     error={Boolean(true)}
                   />
-                  <Link to={PATH_DASHBOARD.app.brands} color="inherit" component={RouterLink}>
+                  <Link
+                    to={PATH_DASHBOARD.app.brands}
+                    color="inherit"
+                    component={RouterLink}
+                  >
                     <Typography
                       variant="inherit"
                       sx={{
                         marginTop: theme.spacing(-2),
                         marginLeft: theme.spacing(1),
-                        fontSize: 'small'
+                        fontSize: 'small',
                       }}
                     >
                       <a>
-                        <Typography component="span" variant="subtitle4" sx={{ color: 'primary.main' }}>
+                        <Typography
+                          component="span"
+                          variant="subtitle4"
+                          sx={{ color: 'primary.main' }}
+                        >
                           &nbsp;{t('products.brand-add')}
                         </Typography>
                       </a>
@@ -534,9 +555,13 @@ export default function ProductForm() {
 
                   <Autocomplete
                     fullWidth
-                    options={categoriesList.filter((x) => !x.isHide && x._id !== values?.category)}
+                    options={categoriesList.filter(
+                      (x) => !x.isHide && x._id !== values?.category
+                    )}
                     getOptionLabel={(option) => option.name}
-                    value={categoriesList.find((c) => c.slug === values?.category)}
+                    value={categoriesList.find(
+                      (c) => c.slug === values?.category
+                    )}
                     onChange={(e, newValue) => {
                       setFieldValue('category', newValue?._id);
                       setValidationCategory(false);
@@ -550,17 +575,25 @@ export default function ProductForm() {
                       />
                     )}
                   />
-                  <Link to={PATH_DASHBOARD.app.brands} color="inherit" component={RouterLink}>
+                  <Link
+                    to={PATH_DASHBOARD.app.brands}
+                    color="inherit"
+                    component={RouterLink}
+                  >
                     <Typography
                       variant="inherit"
                       sx={{
                         marginTop: theme.spacing(-2),
                         marginLeft: theme.spacing(1),
-                        fontSize: 'small'
+                        fontSize: 'small',
                       }}
                     >
                       <a>
-                        <Typography component="span" variant="subtitle4" sx={{ color: 'primary.main' }}>
+                        <Typography
+                          component="span"
+                          variant="subtitle4"
+                          sx={{ color: 'primary.main' }}
+                        >
                           &nbsp;{t('products.category-add')}
                         </Typography>
                       </a>
@@ -577,10 +610,17 @@ export default function ProductForm() {
                     options={TAGS_OPTION.map((option) => option)}
                     renderTags={(value, getTagProps) =>
                       value.map((option, index) => (
-                        <Chip key={option} size="small" label={option} {...getTagProps({ index })} />
+                        <Chip
+                          key={option}
+                          size="small"
+                          label={option}
+                          {...getTagProps({ index })}
+                        />
                       ))
                     }
-                    renderInput={(params) => <TextField label="Tags" {...params} />}
+                    renderInput={(params) => (
+                      <TextField label="Tags" {...params} />
+                    )}
                   />
                 </Stack>
               </Card>
@@ -593,8 +633,10 @@ export default function ProductForm() {
                     label={t('products.price')}
                     {...getFieldProps('price')}
                     InputProps={{
-                      startAdornment: <InputAdornment position="start">đ</InputAdornment>,
-                      type: 'number'
+                      startAdornment: (
+                        <InputAdornment position="start">đ</InputAdornment>
+                      ),
+                      type: 'number',
                     }}
                     error={Boolean(touched.price && errors.price)}
                     helperText={touched.price && errors.price}
@@ -606,8 +648,10 @@ export default function ProductForm() {
                     label={t('products.market-price')}
                     {...getFieldProps('marketPrice')}
                     InputProps={{
-                      startAdornment: <InputAdornment position="start">đ</InputAdornment>,
-                      type: 'number'
+                      startAdornment: (
+                        <InputAdornment position="start">đ</InputAdornment>
+                      ),
+                      type: 'number',
                     }}
                     error={Boolean(touched.marketPrice && errors.marketPrice)}
                     helperText={touched.marketPrice && errors.marketPrice}
@@ -615,13 +659,23 @@ export default function ProductForm() {
                 </Stack>
 
                 <FormControlLabel
-                  control={<Switch {...getFieldProps('taxes')} checked={values.taxes} />}
+                  control={
+                    <Switch
+                      {...getFieldProps('taxes')}
+                      checked={values.taxes}
+                    />
+                  }
                   label={t('products.price-includes-taxes')}
                   sx={{ mt: 2 }}
                 />
               </Card>
 
-              <Button fullWidth variant="contained" size="large" onClick={handleSubmit}>
+              <Button
+                fullWidth
+                variant="contained"
+                size="large"
+                onClick={handleSubmit}
+              >
                 {t('products.create')}
               </Button>
             </Stack>
