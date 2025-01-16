@@ -34,7 +34,7 @@ export default {
       'Thành công hay thất bại trong kinh doanh là do thái độ trong suy nghĩ nhiều hơn là khả năng suy nghĩ.',
   },
   home: {
-    'page-title': 'Điện thoại di dộng chính hãng và phụ kiện | HK Mobile',
+    'page-title': 'Sản phẩm chính hãng | Techstore',
     cart: 'Giỏ hàng',
     'order-history': 'Lịch sử mua hàng',
     'product-desc': 'Mô tả sản phẩm',

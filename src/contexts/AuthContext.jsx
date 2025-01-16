@@ -136,8 +136,9 @@ function AuthProvider({ children }) {
     try {
       dispatch({ type: 'CLEAR' });
       if (isDev) console.log('[Auth][googleOAuth] input', { accessToken });
-
+      console.log("accessToken", accessToken);
       const { data } = await api.googleOAuth(accessToken);
+      console.log("data",data)
       if (isDev) console.log('[Auth][googleOAuth] result', data);
 
       const { token, refreshToken, user } = data.data;

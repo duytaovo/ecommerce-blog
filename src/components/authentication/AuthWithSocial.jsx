@@ -1,12 +1,14 @@
 // material
 import { Stack, Button, Divider, Typography } from '@material-ui/core';
 import { GoogleLogin } from 'react-google-login';
+import { gapi } from 'gapi-script';
 // hooks
 import { useSnackbar } from 'notistack';
 import useAuth from '../../hooks/useAuth';
 import useLocales from '../../hooks/useLocales';
 // icons
 import { FacebookIcon, GoogleIcon, TwitterIcon } from '../../assets';
+import { useEffect } from 'react';
 
 // ----------------------------------------------------------------------
 
@@ -14,6 +16,17 @@ export default function AuthWithSocial({ isLogin }) {
   const { t } = useLocales();
   const { googleOAuth, loginWithFaceBook, loginWithTwitter } = useAuth();
   const { enqueueSnackbar } = useSnackbar();
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+        scope: 'email',
+      });
+    }
+
+    gapi.load('client:auth2', start);
+  }, []);
 
   const handleGoogleLoginSuccess = async (res) => {
     const tokenId = res?.tokenId;
@@ -46,7 +59,7 @@ export default function AuthWithSocial({ isLogin }) {
     <>
       <Stack direction="row" spacing={2}>
         <GoogleLogin
-          clientId="235569401328-lib09fjkc10r16r6mbscljl4ulb5049q.apps.googleusercontent.com"
+          clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
           render={(renderProps) => (
             <Button
               fullWidth
@@ -64,11 +77,23 @@ export default function AuthWithSocial({ isLogin }) {
           cookiePolicy="single_host_origin"
         />
 
-        <Button fullWidth size="large" color="inherit" variant="outlined" onClick={handleLoginFaceBook}>
+        <Button
+          fullWidth
+          size="large"
+          color="inherit"
+          variant="outlined"
+          onClick={handleLoginFaceBook}
+        >
           <FacebookIcon disabled />
         </Button>
 
-        <Button fullWidth size="large" color="inherit" variant="outlined" onClick={handleLoginTwitter}>
+        <Button
+          fullWidth
+          size="large"
+          color="inherit"
+          variant="outlined"
+          onClick={handleLoginTwitter}
+        >
           <TwitterIcon disabled />
         </Button>
       </Stack>

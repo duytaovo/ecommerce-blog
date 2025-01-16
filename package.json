@@ -68,6 +68,7 @@
     "fontkit": "^2.0.4",
     "formik": "^2.2.7",
     "framer-motion": "7.6.6",
+    "gapi-script": "^1.2.0",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.9.0",
     "history": "^5.0.0",
