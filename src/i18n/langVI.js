@@ -46,7 +46,7 @@ export default {
     blog: 'Blog',
   },
   account: {
-    'page-title': 'Account | HK Mobile',
+    'page-title': 'Account | Techstore',
     info: 'Thông tin tài khoản',
     order: 'Đơn hàng',
     'address-book': 'Sổ địa chỉ',
@@ -100,7 +100,7 @@ export default {
     'edit-title': 'Chỉnh sửa địa chỉ',
   },
   cart: {
-    'page-title': 'Giỏ hàng | HK Mobile',
+    'page-title': 'Giỏ hàng | Techstore',
     title: 'Giỏ hàng',
     'title-detail': 'Chi tiết giỏ hàng',
     item: 'sản phẩm',
@@ -161,8 +161,8 @@ export default {
       'Cung cấp cho chúng tôi địa chỉ, đơn hàng sẽ được giao đến tận nhà cho bạn!',
   },
   order: {
-    'page-title': 'Đơn hàng | HK Mobile',
-    'dashboard-page-title': 'Quản lý Đơn hàng | HK Mobile',
+    'page-title': 'Đơn hàng | Techstore',
+    'dashboard-page-title': 'Quản lý Đơn hàng | Techstore',
     heading: 'Danh sách Đơn hàng',
     title: 'Đơn hàng',
     'search-placeholder': 'Tìm kiếm đơn hàng ...',
@@ -206,9 +206,9 @@ export default {
   },
   auth: {
     'page-title': {
-      login: 'Đăng nhập | HK Mobile',
-      register: 'Đăng ký | HK Mobile',
-      'reset-password': 'Đặt lại mật khẩu | HK Mobile',
+      login: 'Đăng nhập | Techstore',
+      register: 'Đăng ký | Techstore',
+      'reset-password': 'Đặt lại mật khẩu | Techstore',
     },
     salutation: 'Chào mừng quay trở lại !',
     register: 'Đăng ký',
@@ -260,11 +260,11 @@ export default {
     'role-staff': 'Nhân viên',
     'role-customer': 'Khách hàng',
 
-    'accept-terms': 'Khi đăng ký, bạn đã đồng ý với HK Mobile về',
+    'accept-terms': 'Khi đăng ký, bạn đã đồng ý với Techstore về',
     tos: 'Điều khoản sử dụng',
     'privacy-policy': 'Chính sách bảo mật',
 
-    'register-salutation': 'Gia nhập HK Mobile ngay hôm nay',
+    'register-salutation': 'Gia nhập Techstore ngay hôm nay',
     'register-title': 'Đăng ký thành viên',
     'register-subtitle': 'Tích điểm và nhận được nhiều ưu đãi hấp dẫn',
     'register-success': 'Đăng ký thành công !',
@@ -304,7 +304,7 @@ export default {
     'created-at': 'Ngày tạo',
     'updated-at': 'Ngày sửa',
     categories: {
-      'page-title': 'Quản lý Danh mục | HK Mobile',
+      'page-title': 'Quản lý Danh mục | Techstore',
       heading: 'Danh sách Danh mục',
       title: 'Danh mục',
       'title-not-found': 'Danh sách danh mục rỗng!',
@@ -330,7 +330,7 @@ export default {
     },
 
     brands: {
-      'page-title': 'Quản lý Thương hiệu | HK Mobile',
+      'page-title': 'Quản lý Thương hiệu | Techstore',
       title: 'Thương hiệu',
       heading: 'Danh sách Thương hiệu',
       'search-brand-placeholder': 'Tìm kiếm thương hiệu ...',
@@ -354,7 +354,7 @@ export default {
       visible: 'Hiển thị',
     },
     discounts: {
-      'page-title': 'Quản lý Giảm giá | HK Mobile',
+      'page-title': 'Quản lý Giảm giá | Techstore',
       title: 'Khuyến mãi',
       heading: 'Danh sách khuyến mãi',
       'search-placeholder': 'Tìm kiếm mã khuyến mãi...',
@@ -388,7 +388,7 @@ export default {
       'date-end': 'Ngày kết thúc',
     },
     users: {
-      'page-title': 'User management | HK Mobile',
+      'page-title': 'User management | Techstore',
       title: 'Người dùng',
       'staff-list': 'Danh sách nhân viên',
       'customer-list': 'Danh sách khách hàng',
@@ -444,7 +444,7 @@ export default {
   },
   products: {
     fee: 'Giá liên hệ',
-    'page-title': 'Quản lý sản phẩm | HK Mobile',
+    'page-title': 'Quản lý sản phẩm | Techstore',
     title: 'Sản phẩm',
     list: 'Danh sách sản phẩm',
     'list-me': 'SẢN PHẨM DÀNH CHO BẠN',
@@ -457,10 +457,10 @@ export default {
     add: 'Thêm sản phẩm',
     create: 'Thêm sản phẩm',
     save: 'Lưu lại',
-    'add-title': 'Ecommerce: Add new product | HK Mobile',
+    'add-title': 'Ecommerce: Add new product | Techstore',
     'add-success': 'Thêm sản phẩm mới thành công',
     edit: 'Chỉnh sửa sản phẩm',
-    'edit-title': 'Ecommerce: Edit new product | HK Mobile',
+    'edit-title': 'Ecommerce: Edit new product | Techstore',
     delete: 'Xóa sản phẩm',
     'confirm-delete': 'Bạn có muốn xoá sản phẩm - {{nameInfo}}?',
     name: 'Tên sản phẩm',
@@ -499,7 +499,7 @@ export default {
     'label-toolbar': 'Hiển thị sản phẩm đã ẩn',
     'infor-1-title': '100% Chính hãng',
     'infor-1-content':
-      'Tất cả các sản phẩm tại HK Mobile đều là hàng chính hãng tại Việt Nam',
+      'Tất cả các sản phẩm tại Techstore đều là hàng chính hãng tại Việt Nam',
     'infor-2-title': '15 ngày đổi trả',
     'infor-2-content': 'Cam kết đổi trả trong vòng 15 ngày nếu xảy ra lỗi',
     'infor-3-title': 'Bảo hành chính hãng',
@@ -507,7 +507,7 @@ export default {
       'Sản phẩm được bảo hành chính hãng {{product?.warrantyPeriod}} tháng',
   },
   blogs: {
-    'page-title': 'Quản lý Bài đăng | HK Mobile',
+    'page-title': 'Quản lý Bài đăng | Techstore',
     heading: 'Danh sách Bài đăng',
     'heading-create': 'Thêm mới Bài đăng',
     title: 'Bài viết',
@@ -541,7 +541,7 @@ export default {
     save: 'Lưu thay đổi',
   },
   commentBlog: {
-    'page-title': 'Quản lý Bình luận | HK Mobile',
+    'page-title': 'Quản lý Bình luận | Techstore',
     heading: 'Danh sách Bình luận',
     'heading-create': 'Thêm mới Bình luận',
     title: 'Bài viết',

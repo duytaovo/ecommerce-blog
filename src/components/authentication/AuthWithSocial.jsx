@@ -77,7 +77,7 @@ export default function AuthWithSocial({ isLogin }) {
           cookiePolicy="single_host_origin"
         />
 
-        <Button
+        {/* <Button
           fullWidth
           size="large"
           color="inherit"
@@ -95,7 +95,7 @@ export default function AuthWithSocial({ isLogin }) {
           onClick={handleLoginTwitter}
         >
           <TwitterIcon disabled />
-        </Button>
+        </Button> */}
       </Stack>
 
       {isLogin && (

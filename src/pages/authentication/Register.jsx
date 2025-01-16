@@ -113,7 +113,17 @@ export default function Register() {
 
           <AuthWithSocial isLogin={false} />
 
-          <Stack spacing={3} mt={4}>
+
+
+          <Stack spacing={3} mt={4} sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 2,
+            width: '100%',
+            maxWidth: 464,
+            margin: 'auto'
+          }}>
            {/* {errorMgs && <Alert severity="error">{errorMgs}</Alert>}
            <CustomPhoneInput
              label={t('auth.phone')} 
@@ -124,6 +134,7 @@ export default function Register() {
            <LoadingButton fullWidth size="large" variant="contained" onClick={handleRegister}> 
              {t('auth.register')} 
            </LoadingButton>  */}
+           Hoặc
           </Stack> 
 
           <RegisterForm />
