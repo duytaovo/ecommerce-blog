@@ -135,7 +135,7 @@ export default function MainFooter() {
             textAlign: { xs: 'center', md: 'left' }
           }}
         >
-          &copy; 2021 Techstore. All rights reserved
+          &copy; 2025 Techstore. All rights reserved
         </Typography>
       </Container>
     </RootStyle>

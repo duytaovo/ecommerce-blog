@@ -183,6 +183,14 @@ function MainNavbar({ categoryList, showCategoryMenu, cartItemsCount }) {
           <Box sx={{ mx: 3, flexGrow: 1 }}>
             <SearchBar />
           </Box>
+          <Box sx={{ mx: 2, flexGrow: 1 }}>
+            <NavbarItem
+              text={t('home.blog')}
+              icon={blog24Regular}
+              color="primary"
+              href="/blog"
+            />
+          </Box>
 
           <Stack
             direction="row"
@@ -200,23 +208,19 @@ function MainNavbar({ categoryList, showCategoryMenu, cartItemsCount }) {
             <LanguagePopover isShowTitle />
 
             <NavbarItem
+              style={{ ml: 0 }}
               text={t('home.order-history')}
               icon={history24Filled}
               color="inherit"
               href="/order-history"
             />
             <NavbarItem
+              style={{ ml: 0 }}
               badgeContent={cartItemsCount}
               text={t('home.cart')}
               icon={cart24Regular}
               color="primary"
               href="/cart"
-            />
-            <NavbarItem
-              text={t('home.blog')}
-              icon={blog24Regular}
-              color="primary"
-              href="/blog"
             />
 
             <AccountPopover menuOptions={accountMenus} isShowTitle />
